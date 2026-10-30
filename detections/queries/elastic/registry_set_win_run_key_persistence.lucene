@@ -1,0 +1,1 @@
+(registry.path:(*\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\* OR *\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*)) AND (winlog.event_data.Details:(*powershell* OR *mshta* OR *wscript* OR *rundll32* OR *\\AppData\\Local\\Temp\\* OR *\\Users\\Public\\*))

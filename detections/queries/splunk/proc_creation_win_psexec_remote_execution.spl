@@ -1,0 +1,1 @@
+ParentImage="*\\PSEXESVC.exe" OR (Image IN ("*\\PsExec.exe", "*\\PsExec64.exe") CommandLine="*\\\\*")

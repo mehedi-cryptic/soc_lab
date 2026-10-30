@@ -1,0 +1,1 @@
+((process.executable.caseless:(*\\powershell.exe OR *\\pwsh.exe)) OR (process.pe.original_file_name:(PowerShell.EXE OR pwsh.dll))) AND (process.command_line:(*\ \-e\ * OR *\ \-en\ * OR *\ \-enc\ * OR *\ \-enco* OR *\ \-encodedcommand\ *))

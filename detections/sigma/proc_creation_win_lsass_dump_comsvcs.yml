@@ -1,0 +1,29 @@
+title: LSASS Dump via comsvcs.dll MiniDump
+id: d487227c-08b7-412d-a347-92b7b5059cf3
+status: experimental
+description: |
+  Detects rundll32 calling the MiniDump export of comsvcs.dll. This "living off the land"
+  technique dumps LSASS memory without dropping Mimikatz, so it often slips past antivirus.
+references:
+  - https://attack.mitre.org/techniques/T1003/001/
+  - https://lolbas-project.github.io/lolbas/Libraries/comsvcs/
+author: YOUR_NAME
+date: 2026-10-29
+tags:
+  - attack.credential-access
+  - attack.t1003.001
+  - attack.defense-evasion
+  - attack.t1218.011
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    Image|endswith: '\rundll32.exe'
+    CommandLine|contains|all:
+      - 'comsvcs'
+      - 'minidump'
+  condition: selection
+falsepositives:
+  - None known
+level: critical

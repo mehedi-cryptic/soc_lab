@@ -1,0 +1,6 @@
+type,value,verdict,source,note
+domain,update-cdn.example,malicious,internal-ti,Staging domain seen in phishing campaign (lab data)
+ip,198.51.100.23,malicious,internal-ti,Payload host serving svch.exe (lab data)
+ip,203.0.113.77,malicious,internal-ti,Mass RDP brute-forcer (lab data)
+sha256,783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b,malicious,internal-ti,svch.exe loader (lab data)
+sha256,8745a9741618ba4816c65083904f6a5ced3bb5954335b8ec8c316e8ba0facafe,clean,internal-ti,AdobeARM.exe signed updater (lab data)

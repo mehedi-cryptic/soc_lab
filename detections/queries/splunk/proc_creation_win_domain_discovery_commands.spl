@@ -1,0 +1,1 @@
+(Image IN ("*\\net.exe", "*\\net1.exe") CommandLine IN ("*group \"domain admins\"*", "*group \"enterprise admins\"*", "*group /domain*", "*user /domain*")) OR (Image="*\\nltest.exe" CommandLine IN ("*/domain_trusts*", "*/dclist*")) OR (Image="*\\whoami.exe" CommandLine IN ("*/all*", "*/priv*", "*/groups*"))

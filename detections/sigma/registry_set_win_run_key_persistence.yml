@@ -1,0 +1,33 @@
+title: Registry Run Key Points to Suspicious Location
+id: 1c8084a2-dfd8-41cf-adad-1e371dfa159a
+status: experimental
+description: |
+  Detects a value written to a Run/RunOnce key that launches a script interpreter or a binary
+  from a user-writable folder. Requires Sysmon Event ID 13.
+references:
+  - https://attack.mitre.org/techniques/T1547/001/
+author: YOUR_NAME
+date: 2026-10-29
+tags:
+  - attack.persistence
+  - attack.t1547.001
+logsource:
+  product: windows
+  category: registry_set
+detection:
+  selection_key:
+    TargetObject|contains:
+      - '\Software\Microsoft\Windows\CurrentVersion\Run\'
+      - '\Software\Microsoft\Windows\CurrentVersion\RunOnce\'
+  selection_value:
+    Details|contains:
+      - 'powershell'
+      - 'mshta'
+      - 'wscript'
+      - 'rundll32'
+      - '\AppData\Local\Temp\'
+      - '\Users\Public\'
+  condition: all of selection_*
+falsepositives:
+  - Some consumer software installs updaters under AppData (OneDrive, Teams, Zoom); filter by verified path
+level: medium

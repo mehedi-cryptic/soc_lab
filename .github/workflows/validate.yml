@@ -1,0 +1,42 @@
+name: Validate detections and triage tool
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  sigma:
+    name: Sigma rule validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install sigma-cli and backends
+        run: |
+          pip install sigma-cli
+          sigma plugin install splunk
+      - name: Check rules (syntax, ATT&CK tags, required fields)
+        run: sigma check --fail-on-issues --fail-on-error detections/sigma
+      - name: Every rule converts to Splunk SPL
+        run: |
+          for r in detections/sigma/*.yml; do
+            sigma convert -t splunk -p splunk_windows "$r" > /dev/null || { echo "::error file=$r::conversion failed"; exit 1; }
+          done
+
+  triage-tool:
+    name: Triage tool tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: triage-tool
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - name: Smoke test on sample data
+        run: python triage.py samples/sample_alerts.json --offline --out /tmp/report

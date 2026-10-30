@@ -1,0 +1,1 @@
+TargetObject IN ("*\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*", "*\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*") Details IN ("*powershell*", "*mshta*", "*wscript*", "*rundll32*", "*\\AppData\\Local\\Temp\\*", "*\\Users\\Public\\*")

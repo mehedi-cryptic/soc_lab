@@ -1,0 +1,1 @@
+(process.executable.caseless:*\\certutil.exe OR process.pe.original_file_name:CertUtil.exe) AND (process.command_line:(*urlcache* OR *verifyctl*)) AND (process.command_line:(*http\:\/\/* OR *https\:\/\/*))

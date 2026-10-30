@@ -1,0 +1,7 @@
+host,criticality,role,owner
+SRV-FILE-01,high,File server (finance and HR shares),Infrastructure
+DC-01,high,Domain controller,Infrastructure
+RDP-JUMP-01,high,Internet-facing RDP jump host,Infrastructure
+WS-FIN-07,medium,Finance workstation,Finance
+WS-MKT-11,low,Marketing workstation,Marketing
+WS-HR-02,low,HR workstation,HR

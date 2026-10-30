@@ -1,0 +1,56 @@
+title: Failed Logon Attempt (Network or RDP)
+id: d98e90ee-8b8d-475a-8a9e-69097fbfbe19
+name: win_failed_network_logon
+status: experimental
+description: |
+  Base rule. Detects a single failed logon over the network (type 3) or RDP (type 10).
+  On its own this is noise; the correlation rule below turns it into a brute-force detection.
+references:
+  - https://attack.mitre.org/techniques/T1110/
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4625
+author: YOUR_NAME
+date: 2026-10-29
+tags:
+  - attack.credential-access
+  - attack.t1110
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4625
+    LogonType:
+      - 3
+      - 10
+  condition: selection
+falsepositives:
+  - Users mistyping passwords
+  - Service accounts with expired credentials
+level: low
+---
+title: Brute Force - 10 or More Failed Logons From One Source in 5 Minutes
+id: f4655c2e-7322-44dd-9ffa-a8b8b9b04bd7
+status: experimental
+description: |
+  Correlation rule. Fires when a single source IP produces 10+ failed network/RDP logons
+  within 5 minutes. Tuning notes are in attack-mapping.md.
+references:
+  - https://attack.mitre.org/techniques/T1110/001/
+author: YOUR_NAME
+date: 2026-10-29
+tags:
+  - attack.credential-access
+  - attack.t1110.001
+correlation:
+  type: event_count
+  rules:
+    - win_failed_network_logon
+  group-by:
+    - IpAddress
+  timespan: 5m
+  condition:
+    gte: 10
+falsepositives:
+  - Misconfigured service or scheduled task retrying a stale password
+  - Vulnerability scanners performing authenticated scans
+level: medium

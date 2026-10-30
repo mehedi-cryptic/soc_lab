@@ -1,0 +1,1 @@
+Image="*\\certutil.exe" OR OriginalFileName="CertUtil.exe" CommandLine IN ("*urlcache*", "*verifyctl*") CommandLine IN ("*http://*", "*https://*")

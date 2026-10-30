@@ -1,0 +1,5 @@
+# One account per line (case-insensitive, domain prefix optional). Lines starting with # are ignored.
+administrator
+svc_backup
+it.admin
+domain.admin

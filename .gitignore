@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.env
+
+# Triage tool runtime output (examples/ is committed on purpose)
+triage-tool/reports/
+triage-tool/.cache/
+
+# Never commit real alert exports or API keys
+*.evtx
+alerts_*.json*

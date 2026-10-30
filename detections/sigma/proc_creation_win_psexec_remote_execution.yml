@@ -1,0 +1,31 @@
+title: Remote Execution via PsExec Service
+id: dec02808-2f9a-4eea-9dc0-197cb622e4ff
+status: experimental
+description: |
+  Detects processes spawned by the PsExec service (PSEXESVC.exe) on the target host, or the
+  PsExec client launched with remote-host syntax. Indicates lateral movement over SMB.
+references:
+  - https://attack.mitre.org/techniques/T1021/002/
+  - https://attack.mitre.org/techniques/T1569/002/
+author: YOUR_NAME
+date: 2026-10-29
+tags:
+  - attack.lateral-movement
+  - attack.t1021.002
+  - attack.execution
+  - attack.t1569.002
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_target:
+    ParentImage|endswith: '\PSEXESVC.exe'
+  selection_client:
+    Image|endswith:
+      - '\PsExec.exe'
+      - '\PsExec64.exe'
+    CommandLine|contains: '\\\\'
+  condition: 1 of selection_*
+falsepositives:
+  - IT administrators using PsExec for legitimate remote support (baseline who uses it)
+level: medium

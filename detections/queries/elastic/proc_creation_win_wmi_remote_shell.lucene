@@ -1,0 +1,1 @@
+process.parent.executable.caseless:*\\WmiPrvSE.exe AND (process.executable.caseless:(*\\cmd.exe OR *\\powershell.exe OR *\\pwsh.exe))

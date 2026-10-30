@@ -1,0 +1,37 @@
+title: Scheduled Task Created With Suspicious Action
+id: b144f8f9-6f3f-4800-a952-76750e57738c
+status: experimental
+description: |
+  Detects schtasks.exe /create where the task runs a script interpreter or a binary from a
+  user-writable folder. Common persistence technique after initial access.
+references:
+  - https://attack.mitre.org/techniques/T1053/005/
+author: YOUR_NAME
+date: 2026-10-29
+tags:
+  - attack.persistence
+  - attack.execution
+  - attack.t1053.005
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_img:
+    Image|endswith: '\schtasks.exe'
+    CommandLine|contains: '/create'
+  selection_action:
+    CommandLine|contains:
+      - 'powershell'
+      - 'cmd /c'
+      - 'mshta'
+      - 'wscript'
+      - 'rundll32'
+      - '\AppData\'
+      - '\Temp\'
+      - '\Users\Public\'
+      - 'C:\ProgramData\'
+  condition: all of selection_*
+falsepositives:
+  - Software updaters that install into ProgramData
+  - Admin scripts deployed via GPO (filter by creating user or task name after review)
+level: medium

@@ -1,0 +1,1 @@
+(process.executable.caseless:*\\schtasks.exe AND process.command_line:*\/create*) AND (process.command_line:(*powershell* OR *cmd\ \/c* OR *mshta* OR *wscript* OR *rundll32* OR *\\AppData\\* OR *\\Temp\\* OR *\\Users\\Public\\* OR *C\:\\ProgramData\\*))

@@ -1,0 +1,28 @@
+title: WMI Provider Host Spawning a Shell
+id: 94fe99bb-5073-4b40-aa91-16bfffdd5389
+status: experimental
+description: |
+  Detects WmiPrvSE.exe launching cmd or PowerShell. This is how remote WMI execution
+  (wmic /node, Impacket wmiexec) looks on the target machine.
+references:
+  - https://attack.mitre.org/techniques/T1047/
+author: YOUR_NAME
+date: 2026-10-29
+tags:
+  - attack.execution
+  - attack.t1047
+  - attack.lateral-movement
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    ParentImage|endswith: '\WmiPrvSE.exe'
+    Image|endswith:
+      - '\cmd.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  condition: selection
+falsepositives:
+  - Configuration management tools that use WMI to run scripts
+level: high

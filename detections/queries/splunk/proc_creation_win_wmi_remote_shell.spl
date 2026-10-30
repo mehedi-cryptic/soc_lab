@@ -1,0 +1,1 @@
+ParentImage="*\\WmiPrvSE.exe" Image IN ("*\\cmd.exe", "*\\powershell.exe", "*\\pwsh.exe")

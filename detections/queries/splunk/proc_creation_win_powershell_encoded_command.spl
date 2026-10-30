@@ -1,0 +1,1 @@
+Image IN ("*\\powershell.exe", "*\\pwsh.exe") OR OriginalFileName IN ("PowerShell.EXE", "pwsh.dll") CommandLine IN ("* -e *", "* -en *", "* -enc *", "* -enco*", "* -encodedcommand *")

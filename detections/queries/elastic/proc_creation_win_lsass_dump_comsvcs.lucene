@@ -1,0 +1,1 @@
+process.executable.caseless:*\\rundll32.exe AND (process.command_line:*comsvcs* AND process.command_line:*minidump*)

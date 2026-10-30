@@ -1,0 +1,13 @@
+incident,host,type,value,internal,verdict,sources,notes
+INC-001,WS-FIN-07,domain,update-cdn.example,False,malicious,internal-ti,Staging domain seen in phishing campaign (lab data)
+INC-001,WS-FIN-07,ip,198.51.100.23,False,malicious,internal-ti,Payload host serving svch.exe (lab data)
+INC-001,WS-FIN-07,sha256,783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b,False,malicious,internal-ti,svch.exe loader (lab data)
+INC-001,WS-FIN-07,sha256,e8beeb60a46d78a58413bdb0c48e9af0d9092f44c01851e666b93e848e814e6e,False,unknown,,
+INC-001,WS-FIN-07,url,http://update-cdn.example/stage1.ps1,False,unknown,,
+INC-001,WS-FIN-07,url,http://198.51.100.23/svch.exe,False,unknown,,
+INC-001,WS-FIN-07,ip,10.10.20.37,True,unknown,,internal address - not sent to external intel
+INC-001,WS-FIN-07,ip,10.10.5.12,True,unknown,,internal address - not sent to external intel
+INC-002,SRV-FILE-01,sha256,783c261abc7ffd40f368bb3aacfe34b1ea72dd72a2fd5044e07846223c43100b,False,malicious,internal-ti,svch.exe loader (lab data)
+INC-002,SRV-FILE-01,ip,10.10.20.37,True,unknown,,internal address - not sent to external intel
+INC-003,RDP-JUMP-01,ip,203.0.113.77,False,malicious,internal-ti,Mass RDP brute-forcer (lab data)
+INC-004,WS-HR-02,sha256,8745a9741618ba4816c65083904f6a5ced3bb5954335b8ec8c316e8ba0facafe,False,clean,internal-ti,AdobeARM.exe signed updater (lab data)

@@ -1,0 +1,34 @@
+title: New Service Installed From Suspicious Location
+id: 57d031d1-2b72-47c5-936d-0e4e8d61b75e
+status: experimental
+description: |
+  Detects Windows Event ID 7045 (new service installed) where the service binary lives in a
+  user-writable path or is launched through a script interpreter.
+references:
+  - https://attack.mitre.org/techniques/T1543/003/
+author: YOUR_NAME
+date: 2026-10-29
+tags:
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1543.003
+logsource:
+  product: windows
+  service: system
+detection:
+  selection_event:
+    Provider_Name: 'Service Control Manager'
+    EventID: 7045
+  selection_path:
+    ImagePath|contains:
+      - '\AppData\'
+      - '\Temp\'
+      - '\Users\Public\'
+      - 'C:\ProgramData\'
+      - 'powershell'
+      - 'cmd /c'
+      - 'cmd.exe /c'
+  condition: all of selection_*
+falsepositives:
+  - Legitimate software installers that run temporary services from Temp
+level: high
