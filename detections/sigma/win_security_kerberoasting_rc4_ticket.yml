@@ -1,0 +1,34 @@
+title: Kerberoasting - RC4 Service Ticket Requested
+id: c3caf2af-d50b-400b-83fc-8e86d0c293e7
+status: experimental
+description: |
+  Detects a Kerberos service ticket (TGS) requested with RC4-HMAC encryption (0x17) for a
+  user-based service account. Tools like Rubeus and Impacket GetUserSPNs.py ask for RC4
+  tickets on purpose, because RC4 tickets are much faster to crack offline.
+  Modern domains default to AES, so RC4 requests stand out.
+references:
+  - https://attack.mitre.org/techniques/T1558/003/
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769
+author: YOUR_NAME
+date: 2026-10-31
+tags:
+  - attack.credential-access
+  - attack.t1558.003
+logsource:
+  product: windows
+  service: security
+  definition: 'Requires "Audit Kerberos Service Ticket Operations" on domain controllers'
+detection:
+  selection:
+    EventID: 4769
+    TicketEncryptionType: '0x17'
+    Status: '0x0'
+  filter_main_computer_accounts:
+    ServiceName|endswith: '$'
+  filter_main_krbtgt:
+    ServiceName: 'krbtgt'
+  condition: selection and not 1 of filter_main_*
+falsepositives:
+  - Legacy applications or old service accounts that only support RC4
+  - Domains where AES has not been enabled on service accounts
+level: medium

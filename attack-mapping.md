@@ -21,6 +21,8 @@ you test.
 | `proc_creation_win_domain_discovery_commands` | T1087.002, T1482, T1033 | Discovery | Sysmon 1 | low | Atomic T1087.002, T1482 |
 | `proc_creation_win_shadow_copy_deletion` | T1490 | Impact | Sysmon 1 | critical | Atomic T1490 |
 
+| `win_security_kerberoasting_rc4_ticket` | T1558.003 | Credential Access | Security 4769 (DC) | medium | Atomic T1558.003 |
+
 > Pick the specific test number for each technique with
 > `Invoke-AtomicTest <Technique> -ShowDetailsBrief` and record it here (e.g. `T1059.001 #3`), since numbers change between releases.
 
