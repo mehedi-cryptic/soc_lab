@@ -1,0 +1,58 @@
+title: Microsoft Defender Disabled or Weakened via Command Line
+id: 4c6a2518-fd73-44a6-8157-86affcc53864
+status: experimental
+description: |
+  Detects PowerShell Set-MpPreference / Add-MpPreference commands that turn off Defender
+  protections or add broad exclusions, plus "sc stop/config" against the Defender service.
+  Attackers do this right before dropping tools like Mimikatz or ransomware.
+references:
+  - https://attack.mitre.org/techniques/T1562/001/
+  - https://learn.microsoft.com/en-us/powershell/module/defender/set-mppreference
+author: YOUR_NAME
+date: 2026-11-02
+tags:
+  - attack.defense-evasion
+  - attack.t1562.001
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_ps_disable:
+    CommandLine|contains:
+      - '-DisableRealtimeMonitoring $true'
+      - '-DisableRealtimeMonitoring 1'
+      - '-DisableBehaviorMonitoring $true'
+      - '-DisableIOAVProtection $true'
+      - '-DisableScriptScanning $true'
+      - '-MAPSReporting 0'
+      - '-SubmitSamplesConsent 2'
+  selection_ps_exclusion_path:
+    CommandLine|contains|all:
+      - 'Add-MpPreference'
+      - '-ExclusionPath'
+    CommandLine|contains:
+      - '\Users\Public'
+      - '\AppData\'
+      - '\Temp'
+      - '\ProgramData'
+      - "'C:\\'"
+      - '"C:\"'
+  selection_ps_exclusion_ext:
+    CommandLine|contains|all:
+      - 'Add-MpPreference'
+      - '-ExclusionExtension'
+    CommandLine|contains:
+      - 'exe'
+      - 'dll'
+      - 'ps1'
+  selection_sc:
+    Image|endswith: '\sc.exe'
+    CommandLine|contains:
+      - 'stop WinDefend'
+      - 'config WinDefend'
+      - 'delete WinDefend'
+  condition: 1 of selection_*
+falsepositives:
+  - Admins adding a Defender exclusion for a specific application folder (review the path)
+  - Lab machines where Defender is disabled on purpose for testing
+level: high
