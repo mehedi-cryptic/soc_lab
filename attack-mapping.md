@@ -21,6 +21,7 @@ you test.
 | `proc_creation_win_domain_discovery_commands` | T1087.002, T1482, T1033 | Discovery | Sysmon 1 | low | Atomic T1087.002, T1482 |
 | `proc_creation_win_shadow_copy_deletion` | T1490 | Impact | Sysmon 1 | critical | Atomic T1490 |
 | `proc_creation_win_defender_tampering` | T1562.001 | Defense Evasion | Sysmon 1 | high | Atomic T1562.001 |
+| `win_security_dcsync_replication_request` | T1003.006 | Credential Access | Security 4662 (DC) | high | Mimikatz `lsadump::dcsync` in lab |
 
 | `win_security_kerberoasting_rc4_ticket` | T1558.003 | Credential Access | Security 4769 (DC) | medium | Atomic T1558.003 |
 
