@@ -25,6 +25,8 @@ you test.
 
 | `win_security_kerberoasting_rc4_ticket` | T1558.003 | Credential Access | Security 4769 (DC) | medium | Atomic T1558.003 |
 
+| `proc_creation_win_archive_collection_staging` | T1560.001, T1074.001 | Collection | Sysmon 1 | medium | Atomic T1560.001 |
+
 > Pick the specific test number for each technique with
 > `Invoke-AtomicTest <Technique> -ShowDetailsBrief` and record it here (e.g. `T1059.001 #3`), since numbers change between releases.
 

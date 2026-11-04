@@ -1,0 +1,51 @@
+title: Data Archived With Password or Into a Staging Folder
+id: db618c30-2e45-4a2f-ad48-de4a786e6577
+status: experimental
+description: |
+  Detects 7-Zip, RAR/WinRAR or PowerShell Compress-Archive creating an archive that is
+  password-protected or written to a common attacker staging folder. Ransomware groups
+  and data thieves pack files this way right before exfiltration; the password stops
+  DLP and proxy tools from inspecting what is inside.
+references:
+  - https://attack.mitre.org/techniques/T1560/001/
+  - https://attack.mitre.org/techniques/T1074/001/
+author: YOUR_NAME
+date: 2026-11-05
+tags:
+  - attack.collection
+  - attack.t1560.001
+  - attack.t1074.001
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_archiver_img:
+    Image|endswith:
+      - '\7z.exe'
+      - '\7za.exe'
+      - '\7zr.exe'
+      - '\rar.exe'
+      - '\WinRAR.exe'
+  selection_archiver_add:
+    CommandLine|contains: ' a '
+  archiver_password:
+    CommandLine|contains:
+      - ' -p'
+      - ' -hp'
+  selection_compress_archive:
+    CommandLine|contains: 'Compress-Archive'
+  staging_folder:
+    CommandLine|contains:
+      - '\Users\Public\'
+      - '\PerfLogs\'
+      - '\ProgramData\'
+      - '\AppData\Local\Temp\'
+      - '\Windows\Temp\'
+      - '$Recycle.Bin'
+  condition: >
+    (selection_archiver_img and selection_archiver_add and (archiver_password or staging_folder))
+    or (selection_compress_archive and staging_folder)
+falsepositives:
+  - Backup scripts that create password-protected archives (filter by script path or user after review)
+  - Software installers unpacking into Temp (they extract with "x", not create with "a")
+level: medium
