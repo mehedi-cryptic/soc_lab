@@ -1,0 +1,38 @@
+title: Rclone or MEGAcmd Used to Upload Data to Cloud Storage
+id: 08e94af0-5d66-430f-9051-49bf36f7b51c
+status: experimental
+description: |
+  Detects Rclone copying or syncing files to a cloud remote, or MEGAcmd uploading files.
+  Rclone is a legitimate sync tool, but ransomware groups (Conti, LockBit, BlackCat and others)
+  use it heavily to steal data to MEGA, pCloud or attacker-controlled storage before encrypting.
+  Matches renamed copies through the PE metadata as well as the file name.
+references:
+  - https://attack.mitre.org/techniques/T1567/002/
+  - https://rclone.org/commands/
+author: YOUR_NAME
+date: 2026-11-06
+tags:
+  - attack.exfiltration
+  - attack.t1567.002
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_rclone_img:
+    - Image|endswith: '\rclone.exe'
+    - OriginalFileName: 'rclone.exe'
+    - Description: 'Rsync for cloud storage'
+  selection_rclone_cmd:
+    CommandLine|contains:
+      - ' copy '
+      - ' sync '
+      - ' move '
+      - ' copyto '
+  selection_mega:
+    # On Windows the mega-put.bat wrapper calls MEGAclient.exe put <file>
+    Image|endswith: '\MEGAclient.exe'
+    CommandLine|contains: ' put '
+  condition: (selection_rclone_img and selection_rclone_cmd) or selection_mega
+falsepositives:
+  - IT teams that use Rclone for approved backups (baseline the user, host and remote name)
+level: high
