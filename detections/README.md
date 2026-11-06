@@ -11,23 +11,14 @@ Every rule follows the same conventions:
 - **`falsepositives`:** real, specific causes, not just "unknown"
 - **`level`:** reflects confidence × impact. `low` rules feed correlation/scoring rather than paging anyone
 
-## Validate
-
-```bash
-pip install sigma-cli
-sigma check detections/sigma
+![Sigma rules](https://img.shields.io/badge/Sigma%20rules-19-blue)
+![MITRE ATT&CK](https://img.shields.io/badge/MITRE%20ATT%26CK-27%20techniques-red)a check detections/sigma
 ```
 
 ## Convert
 
 ```bash
-./scripts/convert_rules.sh      # regenerates detections/queries/{splunk,elastic}
-```
-
-Or one rule at a time:
-
-```bash
-sigma plugin install splunk
+| **Detection engineering** | 19 Sigma rules (plus 1 correlation rule) covering all 12 ATT&CK tactics in the lab scope, each with ATT&CK mapping, false-positive notes and tuning guidance | [`detections/sigma/`](detections/sigma) |
 sigma convert -t splunk -p splunk_windows detections/sigma/proc_creation_win_shadow_copy_deletion.yml
 ```
 
