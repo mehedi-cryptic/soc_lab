@@ -7,7 +7,7 @@ description: |
 references:
   - https://attack.mitre.org/techniques/T1003/001/
   - https://lolbas-project.github.io/lolbas/Libraries/comsvcs/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-10-29
 tags:
   - attack.credential-access

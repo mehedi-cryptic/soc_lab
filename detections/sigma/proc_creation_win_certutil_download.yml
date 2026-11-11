@@ -7,7 +7,7 @@ description: |
 references:
   - https://attack.mitre.org/techniques/T1105/
   - https://lolbas-project.github.io/lolbas/Binaries/Certutil/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-10-29
 tags:
   - attack.command-and-control

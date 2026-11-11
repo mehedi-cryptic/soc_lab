@@ -6,7 +6,7 @@ description: |
   almost always does this right before encrypting files, so treat it as critical.
 references:
   - https://attack.mitre.org/techniques/T1490/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-10-29
 tags:
   - attack.impact

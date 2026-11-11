@@ -4,7 +4,7 @@
 |---|---|
 | **Status** | Closed (contained before encryption) |
 | **Severity** | Critical (P1) |
-| **Analyst** | YOUR_NAME |
+| **Analyst** | MD HASAN BHUIYAN |
 | **Detected** | 2026-10-20 09:12 UTC (alert ALR-1002) |
 | **Contained** | 2026-10-20 10:11 UTC |
 | **Time to contain** | 59 minutes from first alert |

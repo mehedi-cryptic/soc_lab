@@ -7,7 +7,7 @@ description: |
 references:
   - https://attack.mitre.org/techniques/T1059/001/
   - https://attack.mitre.org/techniques/T1027/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-10-29
 tags:
   - attack.execution

@@ -6,7 +6,7 @@ description: |
   from a user-writable folder. Requires Sysmon Event ID 13.
 references:
   - https://attack.mitre.org/techniques/T1547/001/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-10-29
 tags:
   - attack.persistence

@@ -6,7 +6,7 @@ description: |
   user-writable folder. Common persistence technique after initial access.
 references:
   - https://attack.mitre.org/techniques/T1053/005/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-10-29
 tags:
   - attack.persistence

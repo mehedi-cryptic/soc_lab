@@ -9,7 +9,7 @@ description: |
 references:
   - https://attack.mitre.org/techniques/T1567/002/
   - https://rclone.org/commands/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-11-06
 tags:
   - attack.exfiltration

@@ -6,7 +6,7 @@ description: |
   (wmic /node, Impacket wmiexec) looks on the target machine.
 references:
   - https://attack.mitre.org/techniques/T1047/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-10-29
 tags:
   - attack.execution

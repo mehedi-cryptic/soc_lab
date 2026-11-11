@@ -6,7 +6,7 @@ description: |
   credential dumping tools (Mimikatz, procdump, comsvcs.dll MiniDump). Requires Sysmon Event ID 10.
 references:
   - https://attack.mitre.org/techniques/T1003/001/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-10-29
 tags:
   - attack.credential-access

@@ -9,7 +9,7 @@ description: |
 references:
   - https://attack.mitre.org/techniques/T1558/003/
   - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4769
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-10-31
 tags:
   - attack.credential-access

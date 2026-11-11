@@ -9,7 +9,7 @@ description: |
 references:
   - https://attack.mitre.org/techniques/T1560/001/
   - https://attack.mitre.org/techniques/T1074/001/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-11-05
 tags:
   - attack.collection

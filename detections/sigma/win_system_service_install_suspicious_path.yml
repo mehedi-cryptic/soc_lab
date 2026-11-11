@@ -6,7 +6,7 @@ description: |
   user-writable path or is launched through a script interpreter.
 references:
   - https://attack.mitre.org/techniques/T1543/003/
-author: YOUR_NAME
+author: MD HASAN BHUIYAN
 date: 2026-10-29
 tags:
   - attack.persistence
